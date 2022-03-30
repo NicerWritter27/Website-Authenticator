@@ -1,12 +1,12 @@
-<!DOCTYPE html public "Gerard Braad"> 
-<html manifest="cache.manifest">
+<!DOCTYPE html> 
+<html lang="en">
     <head>
-        <title>Authenticator</title>
+        <title>Desktop Authenticator</title>
         <meta charset="utf-8">
-        <meta name="description" content="GAuth Authenticator">
+        <meta name="description" content="Deskop Authenticator for PC">
         <meta name="HandheldFriendly" content="True">
         <meta http-equiv="cleartype" content="on">
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
         <link rel="stylesheet" href="css/jquery.mobile-custom.min.css" />
         <link rel="stylesheet" href="css/styling.css" />
@@ -24,10 +24,12 @@
 
         <section data-role="panel" id="panel" data-position="left" data-theme="a" data-display="overlay">
             <ul data-role="listview">
-                <li><a id="panelheader" href="#main" data-rel="close">&nbsp;</a></li>
+                <li><a id="panelheader" data-rel="close">Back</a></li>
                 <li data-l10n-id="menu-keys" data-icon="lock"><a href="#main" data-rel="close">Keys</a></li>
-                <li data-l10n-id="menu-settings" data-icon="gear"><a href="#settings" data-rel="close">Settings</a></li>
-                <li data-l10n-id="menu-about" data-icon="info"><a href="#about" data-rel="close">About</a></li>
+                <li data-l10n-id="menu-about" data-icon="plus"><a href="#add" data-rel="close">Add</a></li>
+                <li data-l10n-id="menu-settings" data-icon="action"><a href="#settings" data-rel="close">Export</a></li>
+                <li data-l10n-id="menu-about" data-icon="comment"><a href="#about" data-rel="close">Help</a></li>
+                <li data-l10n-id="menu-about" data-icon="mail"><a href="https://form.jotform.com/220470835200040" target="_blank" data-rel="close">Feedback</a></li>
             </ul>
         </section>
 
@@ -40,7 +42,7 @@
 
             <div data-role="content">
                 <ul data-role="listview" data-inset="true" data-theme="a" data-split-theme="a" data-split-icon="delete" id="accounts">
-                    <li id="accountsHeader" data-l10n-id="title-keys" data-role="list-divider">One-time passwords<span class="ui-li-count" id='updatingIn'>..</span></li>
+                    <li id="accountsHeader" data-l10n-id="title-keys" data-role="list-divider">One-time passcodes<span class="ui-li-count" id='updatingIn'>..</span></li>
                 </ul>
 
                 <a id="addButton" data-l10n-id="keys-add" href="#add" data-role="button" class="ui-btn ui-icon-plus ui-btn-icon-left">Add</a>
@@ -70,29 +72,46 @@
 
         <section data-role="page" id="settings" data-theme="a">
             <header data-role="header">
-                <h1 data-l10n-id="title-settings">Settings</h1>
+                <h1 data-l10n-id="title-settings">Export</h1>
                 <a data-l10n-id="header-menu" href="#panel" class="header-icon" data-role="button" data-iconpos="notext" data-icon="bars" data-iconpos="notext">Menu</a>
             </header>
             <div data-role="content">
                 <p>
-                    <a id="export" data-l10n-id="settings-export" data-role="button" data-theme="a">Export keys</a>
+                    <a id="export" data-l10n-id="settings-export" data-role="button" data-theme="a">Export Accounts</a>
+		    Before you export your accounts, please read:
+		    <ul>
+			<li>Your accounts will be exported as a file named "windowed-authenticator-accounts-export.json"</li>
+			<li>Your export will be a file type; ".json", you can open it with notepad or any other note editors</li>
+			<li>Your export will not be encrypted, so please keep them in a safe place, but accessible</li>
+			<li>Please do not share your exports, but if you do, we cannot prevent you from getting your account hacked</li>
+		    </ul>
                 </p>
             </div>
         </section>
 
         <section data-role="page" id="about" data-theme="a">
             <header data-role="header">
-                <h1 data-l10n-id="title-about">About</h1>
+                <h1 data-l10n-id="title-about">Help</h1>
                 <a href="#panel" class="header-icon" data-l10n-id="header-menu" data-role="button" data-iconpos="notext" data-icon="bars" data-iconpos="notext">Menu</a>
             </header>
             <div data-role="content">
-                <p>A simple application for multi-factor authentication, written in HTML using jQuery Mobile (and PhoneGap), jsSHA and LocalStorage</p>
-                <p><ul>
-                    <li>Learn why<br/><a target=”_blank” href="http://lifehacker.com/5932700/please-turn-on-two+factor-authentication">Please, turn on two-factor authentication</a></li>
-                    <li>Online<br/><a target=”_blank” href="http://gauth.apps.gbraad.nl/">http://gauth.apps.gbraad.nl/</a></li>
-                    <li>Source code<br/><a target=”_blank” href="http://github.com/gbraadnl/gauth/">http://github.com/gbraadnl/gauth/</a></li>
-                    <li>Thanks to Russell Sayers<br/><a target=”_blank” href="http://blog.tinisles.com/2011/10/google-authenticator-one-time-password-algorithm-in-javascript/">TOTP Algorithm</a></li>
-                </ul></p>
+                <p>A simple Sidebar Authenticator for keeping accounts that supports multi-factor/2-step verification</p>
+                <ul>
+                    <li>Why do I need an authenticator?<br/><a target=”_blank” href="http://lifehacker.com/5932700/please-turn-on-two+factor-authentication">Learn more about 2-step verification</a></li>
+		    <br>
+                    <li>To add an account, click on the "Add" on the menu, you can also click on the pencil icon on the top right corner, then click "Add account", we do not support reading QR codes, so please enter the secret key instead</li>
+		    <br>
+                    <li>To delete an account, click on the pencil icon on the top right corner, then click on the "X" icon next to the account you want to delete<br><strong>REMINDER:</strong><em> you cannot recover that account once deleted, so pelase export it first</em></li>
+		    <br>
+                    <li>You can export your accounts by clicking on the "export" on the menu, read the notes and click "export"</li>
+		    <br>
+		    <li>You can see if the one-time passcodes are about to expire by looking at the top right of the accounts list<em> one-time passcodes usually takes 30 seconds before they expire</em></li>
+		    <br>
+		    <li>You can submit your feedback, question, or <strong>bug</strong> report <a href="https://form.jotform.com/220470835200040" target="_blank">here</a></li>
+		</ul>
+		<center>
+		    <span class="version">Deskop Authenticator v1.0.0</span>
+		</center>
             </div>
         </section>
 
