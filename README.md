@@ -8,3 +8,4 @@ An authenticator on a website!
 ## Other words
 This website was built with [GitHub Pages](https://pages.github.com/)
 <br>Which other developers didn't knew
+<br>[Visit the authenticator](https://nicerwritter27.github.io/Website-Authenticator/)
